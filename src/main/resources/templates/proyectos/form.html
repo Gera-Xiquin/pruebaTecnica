@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Proyecto</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${#strings.isEmpty(proyecto.id) ? 'Nuevo Proyecto' : 'Editar Proyecto'}"></h1>
+    <form th:action="@{/proyectos/guardar}" th:object="${proyecto}" method="post">
+
+        <div class="mb-3">
+            <label for="id" class="form-label">id</label>
+            <input type="text" id="id" th:field="*{id}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="municipio" class="form-label">Municipio</label>
+            <input type="text" id="municipio" th:field="*{municipio}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="departamento" class="form-label">Departamento</label>
+            <input type="text" id="departamento" th:field="*{departamento}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+            <input type="date" id="fechaInicio" th:field="*{fechaInicio}" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="fechaFin" class="form-label">Fecha de Fin</label>
+            <input type="date" id="fechaFin" th:field="*{fechaFin}" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="/proyectos/" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
