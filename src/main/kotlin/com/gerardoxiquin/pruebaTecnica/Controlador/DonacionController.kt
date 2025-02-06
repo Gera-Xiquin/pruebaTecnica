@@ -32,8 +32,18 @@ class DonacionController(
     }
 
     @PostMapping("/guardar")
-    fun guardarDonacion(@ModelAttribute donacion: Donacion): String {
-        donacionService.saveDonacion(donacion)
+    fun  guardarDonacion(
+        @ModelAttribute donacion: Donacion,
+        @RequestParam("proyectoId") proyectoId: String,
+        @RequestParam("rubroId") rubroId: Long
+    ): String {
+        val proyecto = proyectoService.getProyectoByCodigo (proyectoId)
+            ?: throw IllegalArgumentException("Proyecto no encontrado")
+        val rubro = rubroService.getRubroById(rubroId)
+            ?: throw IllegalArgumentException("Rubro no encontrado")
+
+        val nuevaDonacion = donacion.copy(proyecto = proyecto, rubro = rubro)
+        donacionService.saveDonacion(nuevaDonacion)
         return "redirect:/donaciones/"
     }
 

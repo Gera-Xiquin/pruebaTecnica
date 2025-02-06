@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 interface ProyectoRepository : JpaRepository<Proyecto, Long> {
     fun findByCodigo(codigo: String): Proyecto?
+    fun findFirstByOrderByCodigoDesc(): Proyecto?
 }

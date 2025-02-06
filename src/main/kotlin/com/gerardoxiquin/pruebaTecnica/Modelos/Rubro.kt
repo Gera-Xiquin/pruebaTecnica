@@ -11,7 +11,7 @@ data class Rubro(
 
     val nombre: String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proyecto_id")
     val proyecto: Proyecto?
 )

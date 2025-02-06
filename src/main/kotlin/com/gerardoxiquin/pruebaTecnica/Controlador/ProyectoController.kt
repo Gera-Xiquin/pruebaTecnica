@@ -17,9 +17,13 @@ class ProyectoController(@Autowired val proyectoService: ProyectoService) {
         model.addAttribute("proyectos", proyectos)
         return "proyectos/list"
     }
+
     @GetMapping("/nuevo")
     fun nuevoProyecto(model: Model): String {
-        model.addAttribute("proyecto", Proyecto(codigo = "", nombre = "", municipio = "", departamento = "", fechaInicio = "", fechaFin = ""))
+        model.addAttribute(
+            "proyecto",
+            Proyecto(codigo = "", nombre = "", municipio = "", departamento = "", fechaInicio = "", fechaFin = "")
+        )
         return "proyectos/form"
     }
 
@@ -30,13 +34,14 @@ class ProyectoController(@Autowired val proyectoService: ProyectoService) {
     }
 
     @GetMapping("/editar/{id}")
-    fun editarProyecto(@PathVariable id: Long, model: Model): String {
-        val proyecto = proyectoService.getProyectoByCodigo(id.toString())
+    fun editarProyecto(@PathVariable id: String, model: Model): String {
+        val proyecto = proyectoService.getProyectoByCodigo(id)
         if (proyecto != null) {
             model.addAttribute("proyecto", proyecto)
             return "proyectos/form"
+        } else {
+            return "redirect:/proyectos/"
         }
-        return "redirect:/proyectos/"
     }
 
     @GetMapping("/eliminar/{id}")

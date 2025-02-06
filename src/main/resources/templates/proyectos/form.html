@@ -10,14 +10,24 @@
     <h1 th:text="${#strings.isEmpty(proyecto.id) ? 'Nuevo Proyecto' : 'Editar Proyecto'}"></h1>
     <form th:action="@{/proyectos/guardar}" th:object="${proyecto}" method="post">
 
+
         <div class="mb-3">
-            <label for="id" class="form-label">id</label>
-            <input type="text" id="id" th:field="*{id}" class="form-control" required>
+            <label for="id">Id:</label>
+            <input type="text" id="id" name="id" th:field="*{id}" class="form-control" readonly>
+            <small class="form-text text-muted">Este campo se genera automáticamente.</small>
         </div>
+
         <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required>
+            <label for="codigo">Codigo</label>
+            <input type="text" id="codigo" name="codigo" th:field="*{codigo}" class="form-control" readonly>
+            <small class="form-text text-muted">Este campo se genera automáticamente.</small>
         </div>
+
+        <div class="mb-3">
+            <label for="nombre">Nombre del Proyecto:</label>
+            <input type="text" id="nombre" name="nombre" th:field="*{nombre}" class="form-control" required>
+        </div>
+
         <div class="mb-3">
             <label for="municipio" class="form-label">Municipio</label>
             <input type="text" id="municipio" th:field="*{municipio}" class="form-control" required>

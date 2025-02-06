@@ -28,7 +28,7 @@
             <td th:text="${proyecto.departamento}"></td>
             <td th:text="${proyecto.fechaInicio + ' - ' + proyecto.fechaFin}"></td>
             <td>
-                <a th:href="@{/proyectos/editar/{id}(id=${proyecto.id})}" class="btn btn-warning">Editar</a>
+                <a th:href="@{/proyectos/editar/{id}(id=${proyecto.codigo})}" class="btn btn-warning">Editar</a>
                 <a th:href="@{/proyectos/eliminar/{id}(id=${proyecto.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
