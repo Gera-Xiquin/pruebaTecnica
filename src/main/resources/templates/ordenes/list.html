@@ -28,6 +28,7 @@
             <td th:text="${orden.proyecto.nombre}"></td>
             <td th:text="${orden.rubro.nombre}"></td>
             <td>
+                <a th:href="@{/ordenes/editar/{id}(id=${orden.id})}" class="btn btn-warning">Editar</a>
                 <a th:href="@{/ordenes/eliminar/{id}(id=${orden.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
