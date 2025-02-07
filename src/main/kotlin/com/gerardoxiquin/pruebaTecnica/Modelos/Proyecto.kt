@@ -17,6 +17,5 @@ data class Proyecto(
     val departamento: String="",
     val fechaInicio: String="",
     val fechaFin: String="",
-    @OneToMany(mappedBy = "proyecto", cascade = [CascadeType.ALL], orphanRemoval = true)
-    val rubros: List<Rubro> = mutableListOf()
+
 )
