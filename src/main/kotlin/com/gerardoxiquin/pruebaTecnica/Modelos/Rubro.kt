@@ -9,9 +9,9 @@ data class Rubro(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    val nombre: String,
+    val nombre: String="",
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proyecto_id")
-    val proyecto: Proyecto?
+    val proyecto: Proyecto?=Proyecto()
 )

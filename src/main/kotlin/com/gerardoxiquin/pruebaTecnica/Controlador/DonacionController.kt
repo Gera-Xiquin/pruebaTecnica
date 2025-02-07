@@ -25,25 +25,15 @@ class DonacionController(
 
     @GetMapping("/nuevo")
     fun nuevaDonacion(model: Model): String {
-        model.addAttribute("donacion", Donacion(id = null, fecha = "", donante = "", monto = 0.0, proyecto = null, rubro = null))
+        model.addAttribute("donacion", Donacion())
         model.addAttribute("proyectos", proyectoService.getAllProyectos())
         model.addAttribute("rubros", rubroService.getAllRubros())
         return "donaciones/form"
     }
 
     @PostMapping("/guardar")
-    fun  guardarDonacion(
-        @ModelAttribute donacion: Donacion,
-        @RequestParam("proyectoId") proyectoId: String,
-        @RequestParam("rubroId") rubroId: Long
-    ): String {
-        val proyecto = proyectoService.getProyectoByCodigo (proyectoId)
-            ?: throw IllegalArgumentException("Proyecto no encontrado")
-        val rubro = rubroService.getRubroById(rubroId)
-            ?: throw IllegalArgumentException("Rubro no encontrado")
-
-        val nuevaDonacion = donacion.copy(proyecto = proyecto, rubro = rubro)
-        donacionService.saveDonacion(nuevaDonacion)
+    fun  guardarDonacion(@ModelAttribute donacion: Donacion): String {
+        donacionService.saveDonacion(donacion)
         return "redirect:/donaciones/"
     }
 

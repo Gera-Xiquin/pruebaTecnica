@@ -11,19 +11,19 @@ data class Donacion(
     val id: Long? = 0,
 
     @Column(nullable = false)
-    val fecha: String,
+    val fecha: String = "",
 
     @Column(nullable = false)
-    val donante: String,
+    val donante: String = "",
 
     @Column(nullable = false)
-    val monto: Double,
+    val monto: Double = 0.0,
 
     @ManyToOne
     @JoinColumn(name = "proyecto_id", nullable = false)
-    val proyecto: Proyecto?,
+    val proyecto: Proyecto? = Proyecto(),
 
     @ManyToOne
     @JoinColumn(name = "rubro_id", nullable = false)
-    val rubro: Rubro?
+    val rubro: Rubro? = Rubro()
 )

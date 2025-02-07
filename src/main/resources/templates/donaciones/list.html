@@ -28,6 +28,7 @@
             <td th:text="${donacion.proyecto.nombre}"></td>
             <td th:text="${donacion.rubro.nombre}"></td>
             <td>
+                <a th:href="@{/donaciones/editar/{id}(id=${donacion.id})}" class="btn btn-warning">Editar</a>
                 <a th:href="@{/donaciones/eliminar/{id}(id=${donacion.id})}" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
