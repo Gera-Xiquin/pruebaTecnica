@@ -38,8 +38,9 @@ class RubroController(@Autowired val rubroService: RubroService, @Autowired val 
             model.addAttribute("rubro", rubro)
             model.addAttribute("proyectos", proyectoService.getAllProyectos())
             return "rubros/form"
+        }else {
+            return "redirect:/rubros/"
         }
-        return "redirect:/rubros/"
     }
 
     @GetMapping("/eliminar/{id}")

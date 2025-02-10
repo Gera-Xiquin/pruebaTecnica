@@ -36,6 +36,19 @@ class DonacionController(
         donacionService.saveDonacion(donacion)
         return "redirect:/donaciones/"
     }
+    @GetMapping("/editar/{id}")
+    fun editarDonacion(@PathVariable id: Long,model: Model):String{
+        val donacion = donacionService.getDonacionById(id)
+        if(donacion!=null) {
+
+            model.addAttribute("donacion", donacion)
+            model.addAttribute("proyectos", proyectoService.getAllProyectos())
+            model.addAttribute("rubros", rubroService.getAllRubros())
+            return "donaciones/form"
+        }else {
+            return "redirect:/donaciones"
+        }
+    }
 
     @GetMapping("/eliminar/{id}")
     fun eliminarDonacion(@PathVariable id: Long): String {

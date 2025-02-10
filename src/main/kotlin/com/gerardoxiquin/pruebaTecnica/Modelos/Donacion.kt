@@ -19,11 +19,11 @@ data class Donacion(
     @Column(nullable = false)
     val monto: Double = 0.0,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "proyecto_id", nullable = false)
     val proyecto: Proyecto? = Proyecto(),
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rubro_id", nullable = false)
     val rubro: Rubro? = Rubro()
 )
