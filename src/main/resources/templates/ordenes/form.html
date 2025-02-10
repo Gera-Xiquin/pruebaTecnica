@@ -7,8 +7,9 @@
 </head>
 <body>
 <div class="container">
-    <h1>Nueva Orden de Compra</h1>
+    <h1 th:text="${#strings.isEmpty(orden.id) ? 'Nueva Orden' : 'Editar Orden'}"></h1>
     <form th:action="@{/ordenes/guardar}" th:object="${orden}" method="post">
+        <input type="hidden" th:field="*{id}">
         <div class="mb-3">
             <label for="fecha" class="form-label">Fecha</label>
             <input type="date" id="fecha" th:field="*{fecha}" class="form-control" required>

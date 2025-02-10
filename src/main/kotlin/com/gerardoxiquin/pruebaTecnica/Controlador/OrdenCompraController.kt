@@ -41,4 +41,16 @@ class OrdenCompraController(
         ordenCompraService.deleteOrden(id)
         return "redirect:/ordenes/"
     }
+    @GetMapping ("/editar/{id}")
+    fun editarOrden(@PathVariable id: Long,model: Model):String{
+        var orden = ordenCompraService.getOrdenById(id)
+        if(orden!= null){
+            model.addAttribute("orden",orden)
+            model.addAttribute("proyectos", proyectoService.getAllProyectos())
+            model.addAttribute("rubros", rubroService.getAllRubros())
+            return "ordenes/form"
+        }else{
+            return "redirect:/ordenes/"
+        }
+    }
 }
