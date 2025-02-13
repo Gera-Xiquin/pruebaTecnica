@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 th:text="${#strings.isEmpty(orden.id) ? 'Nueva Orden' : 'Editar Orden'}"></h1>
+    <h1 th:text="${#strings.isEmpty(id) ? 'Nueva Orden' : 'Editar Orden'}"></h1>
     <form th:action="@{/ordenes/guardar}" th:object="${orden}" method="post">
         <input type="hidden" th:field="*{id}">
         <div class="mb-3">

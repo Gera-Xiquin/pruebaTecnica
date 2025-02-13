@@ -2,10 +2,18 @@ a)
 
 SELECT 
     p.nombre AS proyecto,
-    (SUM(o.monto) / SUM(d.monto)) * 100 AS porcentaje_ejecucion
+    ((SUM(o.monto)*100)/(SUM(d.monto))) AS porcentaje_ejecucion
 FROM proyectos p
-LEFT JOIN donaciones d ON p.id = d.proyecto_id
-LEFT JOIN ordenes o ON p.id = o.proyecto_id
+LEFT JOIN (
+    SELECT proyecto_id, SUM(monto) AS monto
+    FROM donaciones
+    GROUP BY proyecto_id
+) d ON p.id = d.proyecto_id
+LEFT JOIN (
+    SELECT proyecto_id, SUM(monto) AS monto
+    FROM ordenes_compra
+    GROUP BY proyecto_id
+) o ON p.id = o.proyecto_id
 GROUP BY p.id;
 
 b)

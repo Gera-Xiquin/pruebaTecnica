@@ -26,9 +26,18 @@ class RubroController(@Autowired val rubroService: RubroService, @Autowired val 
     }
 
     @PostMapping("/guardar")
-    fun guardarRubro(@ModelAttribute rubro: Rubro): String {
-        rubroService.saveRubro(rubro)
-        return "redirect:/rubros/"
+    fun guardarRubro(@ModelAttribute rubro: Rubro ,  model: Model): String {
+        val rubroNombreExiste = rubroService.findByNombreAndProyecto_Id(rubro.nombre,rubro.proyecto?.id?:0)
+        if(rubroNombreExiste == null) {
+            rubroService.saveRubro(rubro)
+            return "redirect:/rubros/"
+        }else{
+            model.addAttribute("mensajeError", "El rubro ya existe en ese proyecto.")
+            // Vuelve a mostrar el formulario para crear/editar rubro
+            // Asegúrate de que en el modelo también incluyas la lista de proyectos, si es necesario
+            model.addAttribute("proyectos", proyectoService.getAllProyectos()) // Ejemplo, ajusta según tu lógica
+            return "rubros/form"
+        }
     }
 
     @GetMapping("/editar/{id}")

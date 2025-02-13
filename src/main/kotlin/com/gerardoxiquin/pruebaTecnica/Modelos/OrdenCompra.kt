@@ -7,7 +7,7 @@ import jakarta.persistence.*
 data class OrdenCompra(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = 0,
+    val id: Long? = null,
 
     @Column(nullable = false)
     val fecha: String ="",

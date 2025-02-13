@@ -8,6 +8,9 @@
 <body>
 <div class="container">
     <h1 th:text="${#strings.isEmpty(rubro.id) ? 'Nuevo Rubro' : 'Editar Rubro'}"></h1>
+    <!-- Mostrar mensaje de error si existe -->
+    <div th:if="${mensajeError}" class="alert alert-danger" th:text="${mensajeError}"></div>
+
     <form th:action="@{/rubros/guardar}" th:object="${rubro}" method="post">
         <input type="hidden" th:field="*{id}">
         <div class="mb-3">

@@ -23,4 +23,7 @@ class RubroService(@Autowired private val rubroRepository: RubroRepository) {
     fun deleteRubro(id: Long) {
         rubroRepository.deleteById(id)
     }
+    fun findByNombreAndProyecto_Id(nombre:String,proyectoId :Long):Rubro?{
+        return rubroRepository.findByNombreAndProyecto_Id(nombre, proyectoId)
+    }
 }
